@@ -3,6 +3,8 @@ package com.example.web;
 import javax.servlet.ServletContextEvent;
 import javax.websocket.DeploymentException;
 import javax.websocket.server.ServerContainer;
+import javax.websocket.server.ServerEndpointConfig;
+
 import org.apache.tomcat.websocket.server.Constants;
 import org.apache.tomcat.websocket.server.WsContextListener;
 
@@ -16,7 +18,7 @@ public class ContextListener extends WsContextListener {
                 (ServerContainer) sce.getServletContext().getAttribute(
                         Constants.SERVER_CONTAINER_SERVLET_CONTEXT_ATTRIBUTE);
         try {
-            sc.addEndpoint(ChatWsEndpoint.class);
+            sc.addEndpoint(ServerEndpointConfig.Builder.create(ChatWsEndpoint.class, "/chat").build());
         } catch (final DeploymentException e) {
             throw new IllegalStateException(e);
         }

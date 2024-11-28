@@ -88,7 +88,7 @@ public class JdbcTemplate<T> {
             } else if (e instanceof Timestamp) {
                 stmt.setTimestamp(j, (Timestamp) e);
             } else {
-                throw new IllegalArgumentException("インデックス " + i + " のパラメタはサポートしていないデータ型です。" + e.getClass().getName());
+                throw new IllegalArgumentException(e.getClass().getName());
             }
         }
     }

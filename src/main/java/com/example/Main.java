@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 
+import com.example.web.ContextListener;
 import com.example.web.CookieProcessorWrapper;
 import org.apache.catalina.Context;
 import org.apache.catalina.WebResourceRoot;
@@ -86,6 +87,7 @@ public class Main {
         resources.addPreResources(wrs);
         ctx.setResources(resources);
 
+        ctx.addApplicationListener(ContextListener.class.getName());
         ctx.setCookieProcessor(new CookieProcessorWrapper());
     }
 
